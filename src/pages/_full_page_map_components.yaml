@@ -18,7 +18,6 @@
   source-layer: 'sequence'
   url: 'https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token=MLY|4142433049200173|72206abe5035850d6743b23a49c41333'
 
-
 - id: 'test-raster'
   label: 'OSM Tiles'
   toggle: true  
@@ -42,7 +41,7 @@
 - id: 'pizza'
   label: 'Pizza Places'
   toggle: true
-  visible: true
+  visible: false
   data-type: 'geojson'
   layer-type: 'circle'
   url: 'https://data.cityofnewyork.us/resource/43nn-pn8j.geojson?cuisine_description=Pizza&$limit=10000'
@@ -53,10 +52,67 @@
     - type: "click"
       content:
         - h1:
-            - str: "Feature Info"
-        - p:
-            - str: "Description"
+            - str: "Pizza Place"
         - p:
             - str: "Name: "
             - property: "dba"
+              else: "N/A"
+
+- id: 'wifi'
+  label: 'NYC Free WiFi Hotspots'
+  toggle: true
+  visible: true
+  data-type: 'geojson'
+  layer-type: 'circle'
+  url: 'https://data.cityofnewyork.us/resource/varh-9tsp.geojson?$limit=5000'
+  paint:
+    circle-color: [
+      'match',
+      ['get', 'type'],
+      'Free', '#00ff00',
+      'Limited Free', '#ffff00',
+      'Partner Site', '#ff9900',
+      '#888888'
+    ]
+    circle-radius: 4
+    circle-stroke-width: 1
+    circle-stroke-color: '#ffffff'
+  mouseEvent:
+    - type: "click"
+      content:
+        - h1:
+            - str: "WiFi Hotspot"
+        - p:
+            - str: "Location: "
+            - property: "location"
+              else: "N/A"
+        - p:
+            - str: "Type: "
+            - property: "type"
+              else: "N/A"
+
+- id: 'subway'
+  label: 'Subway Entrances'
+  toggle: true
+  visible: false
+  data-type: 'geojson'
+  layer-type: 'circle'
+  url: 'https://data.cityofnewyork.us/resource/drex-xx56.geojson?$limit=5000'
+  paint:
+    circle-color: '#0039A6'
+    circle-radius: 3
+    circle-stroke-width: 1
+    circle-stroke-color: '#ffffff'
+  mouseEvent:
+    - type: "click"
+      content:
+        - h1:
+            - str: "Subway Entrance"
+        - p:
+            - str: "Line: "
+            - property: "line"
+              else: "N/A"
+        - p:
+            - str: "Station: "
+            - property: "name"
               else: "N/A"
