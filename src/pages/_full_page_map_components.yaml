@@ -59,60 +59,55 @@
               else: "N/A"
 
 - id: 'wifi'
-  label: 'NYC Free WiFi Hotspots'
+  label: 'NYC WiFi Hotspots'
   toggle: true
   visible: true
   data-type: 'geojson'
   layer-type: 'circle'
-  url: 'https://data.cityofnewyork.us/resource/varh-9tsp.geojson?$limit=5000'
+  url: 'https://data.cityofnewyork.us/resource/yjub-udmw.geojson?$limit=1000'
   paint:
-    circle-color: [
-      'match',
-      ['get', 'type'],
-      'Free', '#00ff00',
-      'Limited Free', '#ffff00',
-      'Partner Site', '#ff9900',
-      '#888888'
-    ]
-    circle-radius: 4
-    circle-stroke-width: 1
+    circle-color: '#00BFFF'
+    circle-radius: 5
+    circle-stroke-width: 2
     circle-stroke-color: '#ffffff'
+    circle-opacity: 0.8
   mouseEvent:
     - type: "click"
       content:
         - h1:
             - str: "WiFi Hotspot"
         - p:
-            - str: "Location: "
-            - property: "location"
+            - str: "Name: "
+            - property: "name"
               else: "N/A"
         - p:
-            - str: "Type: "
-            - property: "type"
+            - str: "Provider: "
+            - property: "provider"
               else: "N/A"
 
 - id: 'subway'
-  label: 'Subway Entrances'
+  label: 'NYC Parks'
   toggle: true
   visible: false
   data-type: 'geojson'
   layer-type: 'circle'
-  url: 'https://data.cityofnewyork.us/resource/drex-xx56.geojson?$limit=5000'
+  url: 'https://data.cityofnewyork.us/resource/enfh-gkve.geojson?$limit=500'
   paint:
-    circle-color: '#0039A6'
-    circle-radius: 3
+    circle-color: '#2E7D32'
+    circle-radius: 5
     circle-stroke-width: 1
     circle-stroke-color: '#ffffff'
+    circle-opacity: 0.7
   mouseEvent:
     - type: "click"
       content:
         - h1:
-            - str: "Subway Entrance"
+            - str: "NYC Park"
         - p:
-            - str: "Line: "
-            - property: "line"
+            - str: "Name: "
+            - property: "park_name"
               else: "N/A"
         - p:
-            - str: "Station: "
-            - property: "name"
+            - str: "Acres: "
+            - property: "acres"
               else: "N/A"
